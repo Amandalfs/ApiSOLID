@@ -33,6 +33,8 @@
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        "camelcase": "off",
+        "no-useless-constructor":"off"
     }
 }
