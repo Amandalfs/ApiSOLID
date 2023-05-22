@@ -6,7 +6,7 @@ Gynpass style app.
 
 - [x] Deve ser possivel se cadastrar;
 - [x] Deve ser possivel se autenticar;
-- [ ] Deve ser possivel obter o perfil de usuario logado;
+- [x] Deve ser possivel obter o perfil de usuario logado;
 - [ ] Deve ser possivel obter o numero de check-ins realizados pelo o usuario;
 - [ ] Deve ser possivel o usuario obter seu historico de check-ins;
 - [ ] Deve ser possivel o usuario buscar academias pelo nome;
@@ -22,7 +22,7 @@ Gynpass style app.
 
 - [x] O usuario nao deve poder se cadastar com um email duplicado;
 - [ ] O usuario nao deve classificar a academia mais de uma vez por mes;
-- [ ] O usuario nao pode fazer dois check-ins no mesmo dia;
+- [x] O usuario nao pode fazer dois check-ins no mesmo dia;
 - [ ] O usuario nao pode fazer check-in se nao estiver a (100m) da academia;
 - [ ] O check-in so pode ser validado ate 20 minutos apos criado;
 - [ ] O check-in so pode ser validado por admitradores;

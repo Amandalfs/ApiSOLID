@@ -41,8 +41,8 @@ model Gyn {
   title       String
   description String
   phone       String
-  latitude    String
-  longitude   String
+  latitude    Decimal
+  longitude   Decimal
 
   checkIns  CheckIn[]
 
