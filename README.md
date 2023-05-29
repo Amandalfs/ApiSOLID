@@ -8,7 +8,7 @@ Gynpass style app.
 - [x] Deve ser possivel se autenticar;
 - [x] Deve ser possivel obter o perfil de usuario logado;
 - [ ] Deve ser possivel obter o numero de check-ins realizados pelo o usuario;
-- [ ] Deve ser possivel o usuario obter seu historico de check-ins;
+- [x] Deve ser possivel o usuario obter seu historico de check-ins;
 - [ ] Deve ser possivel o usuario buscar academias pelo nome;
 - [ ] Deve ser possivel validar o check-in em uma academia;
 - [ ] Deve ser possivel validar o check-in de um usuario;
@@ -33,7 +33,7 @@ Gynpass style app.
 
 - [x] A senha do usuario precisa estar criptografada;
 - [x] Os dados da aplicacao precisar estar persistido em um banco postgresSql;
-- [ ] Todas as listas de dados precisam estar paginada com 20 itens por pagina;
+- [x] Todas as listas de dados precisam estar paginada com 20 itens por pagina;
 - [ ] O usuario deve ser autenticado por um JWT (JSON-web-token);
 - [ ] O jwt tem a duracao de 1 hora;
 

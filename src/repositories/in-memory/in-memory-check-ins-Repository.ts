@@ -37,4 +37,16 @@ export class InMemoryCheckInsRepository  implements ICheckInsRepository {
 		return checkOnSameDate;
 	}
 
+	async findManyByUserId(userId: string, page: number){
+		const checkIns = this.items.filter((item)=>{
+			return item.user_id = userId;
+		}).slice((page-1) *20, page * 20);
+
+		if(checkIns.length===0){
+			return null;
+		}
+
+		return checkIns;
+	}
+
 }
