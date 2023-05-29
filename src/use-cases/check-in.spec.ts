@@ -3,7 +3,8 @@ import { InMemoryCheckInsRepository } from "@/repositories/in-memory/in-memory-c
 import { CheckInUseCase } from "./check-in";
 import { InMemoryGymsRepository } from "@/repositories/in-memory/in-memory-Gyms-Repository";
 import { Decimal } from "@prisma/client/runtime";
-import { error } from "console";
+import { MaxDistanceError } from "./errors/max-distance-error";
+import { MaxNumberOfCheckInsError } from "./errors/max-number-of-check-ins-error";
 
 let checkInsRepository: InMemoryCheckInsRepository;
 let gymsRepository: InMemoryGymsRepository;
@@ -15,12 +16,12 @@ describe("Check-in Use Case",()=>{
 		gymsRepository = new InMemoryGymsRepository();
 		sut = new CheckInUseCase(checkInsRepository, gymsRepository);  
 
-		await gymsRepository.items.push({
+		await gymsRepository.create({
 			id: "gyn-01",
 			title: "JavaScript Gym",
 			description: "",
-			latitude: new Decimal(-23.3212825),
-			longitude: new Decimal(-46.834981),
+			latitude: -23.3212825,
+			longitude: -46.834981,
 			phone: ""
 		});
 
@@ -58,10 +59,10 @@ describe("Check-in Use Case",()=>{
 			await sut.execute({
 				gynId: "gyn-01",
 				userId: "user-01",
-				userLatitude: 0,
-				userLongitude: 0,
+				userLatitude: -23.3212825,
+				userLongitude: -46.834981,
 			});
-		}).rejects.toBeInstanceOf(Error);
+		}).rejects.toBeInstanceOf(MaxNumberOfCheckInsError);
 	});
 
 	it("should be able to check in twice but in different days", async ()=>{
@@ -88,12 +89,12 @@ describe("Check-in Use Case",()=>{
 
 
 	it("should be able to Check in on distanc gym", async ()=>{
-		await gymsRepository.items.push({
+		await gymsRepository.create({
 			id: "gyn-02",
 			title: "JavaScript Gym",
 			description: "",
-			latitude: new Decimal(-23.2722115),
-			longitude: new Decimal(-50.8140629),
+			latitude: -23.2722115,
+			longitude: -50.8140629,
 			phone: ""
 		});
 
@@ -106,6 +107,6 @@ describe("Check-in Use Case",()=>{
 				userLatitude: -23.3212825,
 				userLongitude: -46.834981,
 			});
-		}).rejects.toBeInstanceOf(Error);
+		}).rejects.toBeInstanceOf(MaxDistanceError);
 	});
 });
