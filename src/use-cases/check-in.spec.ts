@@ -98,8 +98,6 @@ describe("Check-in Use Case",()=>{
 			phone: ""
 		});
 
-
-
 		await expect(async()=>{
 			await sut.execute({
 				gynId: "gyn-02",
