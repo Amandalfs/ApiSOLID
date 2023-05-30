@@ -11,7 +11,7 @@ Gynpass style app.
 - [x] Deve ser possivel obter o numero de check-ins realizados pelo o usuario;
 - [x] Deve ser possivel o usuario obter seu historico de check-ins;
 - [x] Deve ser possivel o usuario buscar academias pelo nome;
-- [ ] Deve ser possivel o usuario buscar academias proximas;
+- [x] Deve ser possivel o usuario buscar academias proximas ate (10Km);
 - [x] Deve ser possivel realizar um check-in em uma academia;
 - [ ] Deve ser possivel validar o check-in de um usuario;
 - [x] Deve ser possivel cadastrar uma academia;
