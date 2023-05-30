@@ -4,6 +4,7 @@ import { randomUUID } from "crypto";
 import dayjs from "dayjs";
 
 export class InMemoryCheckInsRepository  implements ICheckInsRepository {
+	
 	public items: CheckIn[] = [];
 
 	async create(data: Prisma.CheckInUncheckedCreateInput){
@@ -49,4 +50,7 @@ export class InMemoryCheckInsRepository  implements ICheckInsRepository {
 		return checkIns;
 	}
 
+	async countByUserId(userId: string){
+		return this.items.filter(check=> check.user_id === userId).length;
+	}
 }
