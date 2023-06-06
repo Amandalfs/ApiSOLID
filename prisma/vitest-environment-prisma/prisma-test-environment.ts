@@ -2,17 +2,20 @@ import "dotenv/config";
 import { Environment } from "vitest";
 import { randomUUID } from "crypto";
 import { execSync } from "child_process";
-import fs from "fs-extra";
+import { PrismaClient } from "@prisma/client";
 
 function generateDataBaseUrl(schema: string){
 	if(!process.env.DATABASE_URL){
 		throw new Error("Please provide a DATABASE_URL environment variable.");
 	}
 
-	const url = `file:./db/tests/baseData${schema}.db`;
+	const url = new URL(process.env.DATABASE_URL);
+	url.searchParams.set("schema", schema);
 
-	return url;
+	return url.toString() ;
 }
+
+const prisma = new PrismaClient();
 
 export default <Environment>{
 	name: "prisma",
@@ -26,7 +29,9 @@ export default <Environment>{
 
 		return {
 			async teardown() {
-				console.log("fechado");
+				await prisma.$executeRawUnsafe(`DROP SCHEMA IF EXISTS "${schema}" CASCADE`);
+
+				await prisma.$disconnect();
 			},
 		};
 	},
