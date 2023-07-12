@@ -4,12 +4,12 @@ import { makeSearchGymsUseCase } from "@/use-cases/factores/make-search-gyms-use
 
 
 export async function search(request: FastifyRequest, reply: FastifyReply){
-	const searchQuertSchema = z.object({
+	const searchQuerySchema = z.object({
 		q: z.string(),
         page: z.coerce.number().min(1).default(1),
 	});
 
-	const { q, page } = searchQuertSchema.parse(request.body);
+	const { q, page } = searchQuerySchema.parse(request.body);
 
 	const searchGymsUseCase = makeSearchGymsUseCase();
 
