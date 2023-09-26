@@ -10,41 +10,47 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id              String  @id @default(uuid())
-  name            String 
-  email           String  @unique
-  password_hash   String
-  created_at      String  @default(uuid())
+enum Role {
+  MEMBER
+  ADMIN
+}
 
-  checkIns  CheckIn[]
+model User {
+  id            String @id @default(uuid())
+  name          String
+  email         String @unique
+  role          Role   @default(MEMBER)
+  password_hash String
+  created_at    String @default(uuid())
+
+  checkIns CheckIn[]
 
   @@map("users")
 }
 
 model CheckIn {
-  id            String     @id @default(uuid())
-  created_at    DateTime   @default(now())
-  validated_at  DateTime?   
+  id           String    @id @default(uuid())
+  created_at   DateTime  @default(now())
+  validated_at DateTime?
 
-  user      User      @relation(fields: [user_id], references: [id])
-  user_id   String
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id String
 
-  gyn       Gyn       @relation(fields: [gyn_id], references: [id])
-  gyn_id    String
+  gyn    Gyn    @relation(fields: [gyn_id], references: [id])
+  gyn_id String
 
   @@map("check_ins")
 }
 
 model Gyn {
-  id          String @id @default(uuid())
+  id          String  @id @default(uuid())
   title       String
   description String
   phone       String
   latitude    Decimal
   longitude   Decimal
 
-  checkIns  CheckIn[]
+  checkIns CheckIn[]
 
   @@map("gyns")
 }

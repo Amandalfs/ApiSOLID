@@ -13,7 +13,7 @@ describe("Create gym e2e tests", ()=>{
 	});
 
 	it("Should create a gym", async ()=>{
-		const token = await createAndAuthenticatedUser(app);
+		const token = await createAndAuthenticatedUser(app, true);
 		const response = await request(app.server)
 			.post("/gyms")
 			.set("Authorization", `Bearer ${token}`)

@@ -13,7 +13,7 @@ describe("Nearby gym e2e tests", ()=>{
 	});
 
 	it("Should validate check-in", async ()=>{
-		const token = await createAndAuthenticatedUser(app);
+		const token = await createAndAuthenticatedUser(app, true);
 		await request(app.server)
 			.post("/gyms")
 			.set("Authorization", `Bearer ${token}`)
