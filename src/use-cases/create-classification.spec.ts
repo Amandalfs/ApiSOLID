@@ -1,21 +1,55 @@
-import { beforeEach, describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
+import { CreateClassificationUseCase } from "./create-classification";
+import { IClassificationsRepository } from "@/repositories/implementions/classafications-repository";
+import { ClassificationWeekAlreadyExists } from "./errors/classification-week-already-exists-error";
+
+interface TypeSuit {
+	suit: CreateClassificationUseCase
+	repository: IClassificationsRepository
+}
+
+const makeSuit = (): TypeSuit => {
+	const classificationsRepository = {
+		create: vi.fn(),
+		findByDate: vi.fn(null)
+	};
+	const suit = new CreateClassificationUseCase(classificationsRepository);
+	return {
+		repository: classificationsRepository,
+		suit
+	};
+};
 
 describe("Register Use Case",()=>{
-	beforeEach(()=>{
-		gymsRepository = new InMemoryGymsRepository;
-		suit = new CreateGymUseCase(gymsRepository);
+	it("should be able to create classification", async() => {
+		const { suit } = makeSuit();
+		const input = {
+			userId: "userId",
+			gymId: "gymId",
+			note: 5, 
+			description: ""
+		};
+		const classification = await suit.execute(input);
+		expect(classification.description).toEqual(input.description);
+		expect(classification.note).toEqual(input.note);
 	});
 
-	it("should be able to create classification", async() => {
-
-		const data = {
-			title: "JavaScript Gym",
-			description: null,
-			phone: null,
-			latitude: -23.2722115,
-			longitude: -50.8140629,
+	it("should be thrown if there is already a weekly classification.", async () => {
+		const { suit, repository } = makeSuit();
+		vi.spyOn(repository, "findByDate").mockResolvedValue({
+			id: "reject",
+			note: 5,
+			description: "reject",
+			date: new Date(),
+			gym_id: "rejected",
+			user_id: "rejected"
+		});
+		const input = {
+			userId: "userId",
+			gymId: "gymId",
+			note: 5, 
+			description: ""
 		};
-
-		const { gyn } = await suit.execute(data);
+		await expect(suit.execute(input)).rejects.toThrowError(ClassificationWeekAlreadyExists);
 	});
 });
