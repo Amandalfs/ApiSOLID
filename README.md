@@ -21,16 +21,16 @@ Gynpass style app.
 - [x] O usuario nao pode fazer dois check-ins no mesmo dia;
 - [x] O usuario nao pode fazer check-in se nao estiver a (100m) da academia;
 - [x] O check-in so pode ser validado ate 20 minutos apos criado;
-- [ ] O check-in so pode ser validado por admitradores;
-- [ ] A academia so pode ser cadastrada por  admitradores;
+- [x] O check-in so pode ser validado por admitradores;
+- [x] A academia so pode ser cadastrada por  admitradores;
 
 # RNFs (Requisitos nao-funcionais)
 
 - [x] A senha do usuario precisa estar criptografada;
 - [x] Os dados da aplicacao precisar estar persistido em um banco postgresSql;
 - [x] Todas as listas de dados precisam estar paginada com 20 itens por pagina;
-- [ ] O usuario deve ser autenticado por um JWT (JSON-web-token);
-- [ ] O jwt tem a duracao de 1 hora;
+- [x] O usuario deve ser autenticado por um JWT (JSON-web-token);
+- [x] O jwt tem a duracao de 1 hora;
 
 # Updates Futuros
 
@@ -38,7 +38,8 @@ Gynpass style app.
 - [ ] Deve ser possivel filtrar academias pelas suas classificacoes;
 - [ ] Deve ser possivel o usuario da uma nota de satisfacao da academia;
 - [ ] Deve ser possivel filtrar as academias por tipos de planos;
+- [ ] Deve ser possivel deixar um comentario na classificacao;
 
 ## RNs
 - [ ] O usuario nao deve classificar a academia mais de uma vez por semana;
-- [ ] O usuario nao pode dar duas notas de satisfacao no mesmo mes;
+- [ ] O usuario so pode classificar uma academia por semana;
