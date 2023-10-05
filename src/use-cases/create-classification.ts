@@ -1,33 +1,43 @@
-import { Gyn } from "@prisma/client";
-import { dayjs } from "dayjs";
+import  dayjs  from "dayjs";
+import { ClassificationWeekAlreadyExists } from "./errors/classification-week-already-exists-error";
+import { IClassificationsRepository } from "@/repositories/implementions/classafications-repository";
 
 interface CreateClassificationUseCaseRequest {
     userId: string;
     gymId: string;
-    classification: number;
+    note: number;
     description?: string;
 }
 
 interface CreateClassificationUseCaseResponse {
-
+	note: number;
+	description: string;
 }
 
 export class CreateClassificationUseCase{
 	constructor(private classificationsRepository: IClassificationsRepository){}
 
 	async execute({ userId, note, gymId, description }:CreateClassificationUseCaseRequest): Promise<CreateClassificationUseCaseResponse>{
-		const dateStart = dayjs.duration(new Date());
+		
+		const dateStart = dayjs(new Date()).subtract(1, "week").toDate();
 		const dateEnd = new Date();
-		const rankingExistsWeek = await this.classificationsRepository.findByDate(userId, dateStart, dateEnd);
-		const classification = await this.classificationsRepository.create({
-			userId, 
+
+		const rankingExistsWeek = await this.classificationsRepository.findByDate({userId, dateStart, dateEnd});
+		
+		if(rankingExistsWeek){
+			throw new ClassificationWeekAlreadyExists();
+		}
+
+		await this.classificationsRepository.create({
+			user_id: userId,
+			gym_id: gymId,
 			note, 
-			gymId, 
 			description
 		});
 		
 		return {
-			classification
+			note,
+			description
 		};
 	}
 }
