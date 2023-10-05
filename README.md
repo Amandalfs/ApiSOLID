@@ -38,8 +38,8 @@ Gynpass style app.
 - [ ] Deve ser possivel filtrar academias pelas suas classificacoes;
 - [ ] Deve ser possivel o usuario da uma nota de satisfacao da academia;
 - [ ] Deve ser possivel filtrar as academias por tipos de planos;
-- [ ] Deve ser possivel deixar um comentario na classificacao;
+- [x] Deve ser possivel deixar um comentario na classificacao;
 
 ## RNs
-- [ ] O usuario nao deve classificar a academia mais de uma vez por semana;
-- [ ] O usuario so pode classificar uma academia por semana;
+- [x] O usuario nao deve classificar a academia mais de uma vez por semana;
+- [x] O usuario so pode classificar uma academia por semana;
