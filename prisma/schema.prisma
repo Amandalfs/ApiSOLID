@@ -59,7 +59,7 @@ model Gyn {
 
 model Classification {
   id          String   @id @default(uuid())
-  class       Int
+  note        Int
   description String
   date        DateTime @default(now())
 
