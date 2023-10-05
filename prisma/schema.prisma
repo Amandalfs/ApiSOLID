@@ -23,7 +23,8 @@ model User {
   password_hash String
   created_at    String @default(uuid())
 
-  checkIns CheckIn[]
+  checkIns       CheckIn[]
+  Classification Classification[]
 
   @@map("users")
 }
@@ -50,7 +51,23 @@ model Gyn {
   latitude    Decimal
   longitude   Decimal
 
-  checkIns CheckIn[]
+  checkIns       CheckIn[]
+  Classification Classification[]
 
   @@map("gyns")
+}
+
+model Classification {
+  id          String   @id @default(uuid())
+  class       Int
+  description String
+  date        DateTime @default(now())
+
+  gym_id Gyn    @relation(fields: [gynId], references: [id])
+  gynId  String
+
+  user_id User   @relation(fields: [userId], references: [id])
+  userId  String
+
+  @@map("classifications")
 }
