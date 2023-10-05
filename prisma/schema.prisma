@@ -63,11 +63,11 @@ model Classification {
   description String
   date        DateTime @default(now())
 
-  gym_id Gyn    @relation(fields: [gynId], references: [id])
-  gynId  String
+  gym    Gyn    @relation(fields: [gym_id], references: [id])
+  gym_id String
 
-  user_id User   @relation(fields: [userId], references: [id])
-  userId  String
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id String
 
   @@map("classifications")
 }
