@@ -36,8 +36,7 @@ Gynpass style app.
 
 ## RFs 
 - [ ] Deve ser possivel filtrar academias pelas suas classificacoes;
-- [ ] Deve ser possivel o usuario da uma nota de satisfacao da academia;
-- [ ] Deve ser possivel filtrar as academias por tipos de planos;
+- [x] Deve ser possivel o usuario da uma nota de satisfacao da academia;
 - [x] Deve ser possivel deixar um comentario na classificacao;
 
 ## RNs
